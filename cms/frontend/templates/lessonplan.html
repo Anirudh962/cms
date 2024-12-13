@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Frontend with Buttons and Year Dropdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .container {
+            display: flex;               /* Use Flexbox to arrange items in a row */
+            justify-content: center;     /* Center items horizontally */
+            align-items: center;         /* Center items vertically */
+            gap: 20px;                   /* Add space between items */
+            flex-wrap: wrap;
+        }
+        select, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button {
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+        }
+        .table-container {
+            display: none; /* Hide tables initially */
+            width: 100%;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <table class="table table-striped table-bordered table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>LPid </th>
+                    <th>Desc</th>
+                    <th>Cosn</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            {% for lp in lessonplan %}
+            <tr>
+                <td>{{ lp.lsid }}</td>
+                <td>{{ lp.descp }}</td>
+                <td>{{ lp.cosn }}</td>
+                <td>
+                    <a href="/editprofile/{{ lp.lsid }}"> Edit </a>
+                </td>
+                <td>
+                    <a href="/deleteprofile/{{ lp.lsid }}"> Delete </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
