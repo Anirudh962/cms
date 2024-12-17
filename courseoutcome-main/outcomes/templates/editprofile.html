@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editprofile</title>
+</head>
+<body>
+    <form name="editco" method="POST" action="/updateco/{{ course.course_name }}/">
+        {% csrf_token %}
+        <table id="co-table">
+            <!-- Table headers -->
+            <thead>
+                <tr>
+                    <th>course_name </th>
+                    <th>description</th>
+                    <th>contact_hours</th>
+                    <th>marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                        <td><input type="text" name="tucname" value="{{ entry.course_name }}"></td>
+                        <td><input type="text" name="tudes" value="{{ entry.description }}"></td>
+                        <td><input type="text" name="tuchours" value="{{ entry.contact_hours }}"></td>
+                        <td><input type="text" name="tumarks" value="{{ entry.marks }}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">Submit</button>
+    </form>

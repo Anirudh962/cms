@@ -66,70 +66,15 @@
                 <td>{{ co.contact_hours }}</td>
                 <td>{{ co.marks }}</td>
                 <td>
-                    <a href="/editprofile/{{ co.lsid }}"> Edit </a>
+                    <a href="/editprofile/{{ co.course_name }}"> Edit </a>
                 </td>
                 <td>
-                    <a href="/deleteprofile/{{ co.lsid }}"> Delete </a>
+                    <a href="/deleteprofile/{{ co.course_name }}"> Delete </a>
                 </td>
             </tr>
             {% endfor %}
         </table>
     </div>
-    <form name="course_outcomes" method="POST" action="insertco/">
-        {% csrf_token %}
-        <table id="co-table">
-            <!-- Table headers -->
-            <thead>
-                <tr>
-                    <th>course_name </th>
-                    <th>description</th>
-                    <th>contact_hours</th>
-                    <th>marks</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Loop through previously entered contents (using Django template or backend logic) -->
-                {% for entry in previous_entries %}
-                <tr>
-                    <td><input type="text" name="tucname" value="{{ entry.course_name }}"></td>
-                    <td><input type="text" name="tudes" value="{{ entry.description }}"></td>
-                    <td><input type="text" name="tuchours" value="{{ entry.contact_hours }}"></td>
-                    <td><input type="text" name="tumarks" value="{{ entry.marks }}"></td>
-                    <td><button type="button" onclick="removeRow(this)">Remove</button></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <button type="button" onclick="addRow()">Add Row</button>
-        <button type="submit">Submit</button>
-    </form>
-
-<script>
-     function addRow() {
-        const table = document.getElementById("co-table").getElementsByTagName('tbody')[0];
-        const newRow = table.insertRow(table.rows.length); // Add a new row at the end
-
-        // Create and append the cells for the new row
-        const tucnameCell = newRow.insertCell(0);
-        const tudesCell = newRow.insertCell(1);
-        const tuchoursCell = newRow.insertCell(2);
-        const tumarksCell = newRow.insertCell(3);
-
-        // Add input fields for the new row
-        tucnameCell.innerHTML = '<input type="text" name="tucname">';
-        tudesCell.innerHTML = '<input type="text" name="tudes">';
-        tuchoursCell.innerHTML = '<input type="number" name="tuchours">';
-        tumarksCell.innerHTML = '<input type="number" name="tumarks">'
-        actionCell.innerHTML = '<button type="button" onclick="removeRow(this)">Remove</button>';
-    }
-
-    // Function to remove a row
-        function removeRow(button) {
-            const row = button.closest('tr');
-            row.remove();
-        }
-</script>
         
 </body>
 </html>
